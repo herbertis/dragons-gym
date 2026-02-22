@@ -6,10 +6,7 @@
 <title>Dragons Gym</title>
 <link rel="icon" href="https://dragonsgym.com.br/wp-content/uploads/2022/09/cropped-dragons-gym-ico-32x32.png" sizes="32x32">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-/>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 <style>
@@ -28,6 +25,7 @@ body{
 
 section{
     padding:90px 10%;
+    overflow-x: hidden; /* Evita scroll horizontal nas animações */
 }
 
 h2{
@@ -37,6 +35,40 @@ h2{
     text-transform:uppercase;
     letter-spacing:2px;
 }
+
+/* --- EFEITOS DE SCROLL REVEAL --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal.fade-left {
+    transform: translateX(-50px);
+}
+
+.reveal.fade-right {
+    transform: translateX(50px);
+}
+
+.reveal.fade-left.active, 
+.reveal.fade-right.active {
+    transform: translateX(0);
+}
+
+/* Delays para efeito cascata nos grids */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+/* -------------------------------- */
 
 .whatsapp-float{
     position:fixed;
@@ -63,25 +95,16 @@ h2{
     box-shadow:0 15px 35px rgba(0,0,0,.6);
 }
 
-/* animação elegante */
 @keyframes whatsPulse{
     0%{box-shadow:0 0 0 0 rgba(255, 0, 8, 0.4);}
     70%{box-shadow:0 0 0 15px rgba(37,211,102,0);}
     100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
 }
 
-/* MOBILE: só ícone */
 @media(max-width:600px){
-    .whatsapp-float span{
-        display:none;
-    }
-
-    .whatsapp-float{
-        padding:16px;
-        border-radius:50%;
-    }
+    .whatsapp-float span{ display:none; }
+    .whatsapp-float{ padding:16px; border-radius:50%; }
 }
-
 
 .btn{
     background:linear-gradient(45deg,#ff0000,#fb5252);
@@ -99,7 +122,6 @@ h2{
     box-shadow:0 0 20px #ff0000;
 }
 
-/* HEADER */
 .header{
     position:fixed;
     width:100%;
@@ -113,45 +135,16 @@ h2{
     z-index:999;
 }
 
-.logo img{
-    height:45px;
-}
+.logo img{ height:45px; }
 
-/* NAV DESKTOP */
-.nav{
-    display:flex;
-    gap:30px;
-}
+.nav{ display:flex; gap:30px; }
+.nav a{ color:#fff; text-decoration:none; font-weight:500; transition:0.3s; }
+.nav a:hover{ color:#e10600; }
 
-.nav a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:500;
-    transition:0.3s;
-}
+.burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.burger span{ width:25px; height:3px; background:#fff; transition:0.3s; }
 
-.nav a:hover{
-    color:#e10600;
-}
-
-/* BURGER */
-.burger{
-    display:none;
-    flex-direction:column;
-    gap:5px;
-    cursor:pointer;
-}
-
-.burger span{
-    width:25px;
-    height:3px;
-    background:#fff;
-    transition:0.3s;
-}
-
-/* MOBILE */
 @media(max-width:768px){
-
     .nav{
         position:absolute;
         top:70px;
@@ -164,19 +157,10 @@ h2{
         transition:0.4s;
         box-shadow:-5px 0 20px rgba(0,0,0,0.6);
     }
-
-    .nav.active{
-        right:0;
-    }
-
-    .burger{
-        display:flex;
-    }
-
+    .nav.active{ right:0; }
+    .burger{ display:flex; }
 }
 
-
-/* HERO COM VIDEO */
 .hero{
     position:relative;
     height:100vh;
@@ -188,7 +172,6 @@ h2{
     z-index: 2;
 }
 
-/* VIDEO BACKGROUND */
 .hero video{
     position:absolute;
     top:0;
@@ -199,7 +182,6 @@ h2{
     z-index:-2;
 }
 
-/* OVERLAY ESCURO */
 .hero::after{
     content:"";
     position:absolute;
@@ -211,32 +193,16 @@ h2{
     z-index:-1;
 }
 
-/* CONTEÚDO */
 .hero-content{
     position:relative;
     z-index:2;
     max-width:800px;
 }
 
+.modalidades{ background:#000; padding:120px 10%; }
+.modalidades-wrapper{ display:grid; grid-template-columns: 1fr 1.2fr; align-items:center; position:relative; }
 
-
-
-/* MODALIDADES LAYOUT PRINT */
-.modalidades{
-    background:#000;
-    padding:120px 10%;
-}
-
-.modalidades-wrapper{
-    display:grid;
-    grid-template-columns: 1fr 1.2fr;
-    align-items:center;
-    position:relative;
-}
-
-/* CARD ESQUERDO */
 .card-musculacao {
-  
     max-width: 461px;
     height: 37rem;
     padding: 40px;
@@ -251,117 +217,31 @@ h2{
     z-index: 1;
 }
 
-/* Efeito ativo mais forte ao passar o mouse */
 .card-musculacao:hover {
-  box-shadow:
-    0 0 15px #ff0000,
-    0 0 30px #ff0000,
-    0 0 60px rgba(255, 0, 0, 0.8);
-
+  box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 60px rgba(255, 0, 0, 0.8);
   transform: scale(1.02);
 }
 
-/* Título */
-.card-musculacao h2 {
-  color: #ffffff;
-  font-size: 30px;
-  margin-bottom: 20px;
-  letter-spacing: 2px;
-}
+.card-musculacao h2 { color: #ffffff; font-size: 30px; margin-bottom: 20px; letter-spacing: 2px; }
+.card-musculacao p { color: #e6e6e6; line-height: 1.6; font-size: 1.3rem; }
+.card-musculacao strong { color: #ffffff; }
 
-/* Parágrafos */
-.card-musculacao p {
-  color: #e6e6e6;
-  line-height: 1.6;
-  font-size: 1.3rem;
-}
+.modalidades-img{ position:relative; margin-left:-80px; }
+.modalidades-img img{ width:70%; border-radius:12px; display:block; }
 
-/* Destaque */
-.card-musculacao strong {
-  color: #ffffff;
-}
-
-
-/* IMAGEM DIREITA */
-.modalidades-img{
-    position:relative;
-    margin-left:-80px;
-}
-
-.modalidades-img img{
-    width:70%;
-    border-radius:12px;
-    display:block;
-}
-
-/* RESPONSIVO */
 @media(max-width:992px){
-    .modalidades-wrapper{
-        grid-template-columns:1fr;
-    }
-
-    .modalidades-img{
-        margin-left:0;
-        margin-top:30px;
-    }
-
-    .modalidades-card{
-        padding:40px;
-    }
-
-    .card-musculacao {
-  
-  max-width: 461px;
-  height: 33rem;
-  padding: 40px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid #ff0000;
-  box-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.4);
-  transition: 0.4s ease;
-  margin-left: 0rem;
-  z-index: 1;
+    .modalidades-wrapper{ grid-template-columns:1fr; }
+    .modalidades-img{ margin-left:0; margin-top:30px; }
+    .modalidades-card{ padding:40px; }
+    .card-musculacao { max-width: 461px; height: 33rem; margin-left: 0rem; }
+    .card-musculacao p { font-size: 1rem; }
+    .modalidades-img img{ width:100%; }
 }
 
-.card-musculacao p {
-  color: #e6e6e6;
-  line-height: 1.6;
-  font-size: 1rem;
-}
+.planos { padding: 100px 8%; background: #000; text-align: center; }
+.section-title { font-size: 40px; margin-bottom: 60px; color: #fff; }
+.planos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
-.modalidades-img img{
-    width:100%;
-    border-radius:12px;
-    display:block;
-}
-
-}
-
-
-
-
-.planos {
-  padding: 100px 8%;
-  background: #000;
-  text-align: center;
-}
-
-.section-title {
-  font-size: 40px;
-  margin-bottom: 60px;
-  color: #fff;
-}
-
-/* GRID 3 COLUNAS */
-.planos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-
-/* CARD BASE */
 .card {
   background: #111;
   padding: 40px 30px;
@@ -371,58 +251,18 @@ h2{
   border: 1px solid #222;
 }
 
-/* TÍTULOS VERMELHOS */
-.card h3 {
-  color: #ff1a1a;
-  font-size: 20px;
-  margin-bottom: 15px;
-}
+.card h3 { color: #ff1a1a; font-size: 20px; margin-bottom: 15px; }
+.card h4 { font-size: 28px; color: #fff; margin-bottom: 15px; }
+.card p { color: #aaa; font-size: 14px; }
 
-.card h4 {
-  font-size: 28px;
-  color: #fff;
-  margin-bottom: 15px;
-}
-
-.card p {
-  color: #aaa;
-  font-size: 14px;
-}
-
-/* 🔥 NEON VERMELHO NO HOVER */
-.card:hover {
+.card:hover, .card.selecionado {
   border: 1px solid #ff0000;
-  box-shadow: 
-    0 0 10px #ff0000,
-    0 0 20px #ff0000,
-    0 0 40px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.6);
   transform: translateY(-8px);
 }
 
-.card.active {
-  border: 1px solid #ff0000;
-  box-shadow: 
-    0 0 10px #ff0000,
-    0 0 20px #ff0000,
-    0 0 40px rgba(255, 0, 0, 0.6);
-  transform: translateY(-8px);
-}
-
-@media (max-width: 992px) {
-  .planos-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .planos-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ============================= */
-/* SOBRE */
-/* ============================= */
+@media (max-width: 992px) { .planos-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .planos-grid { grid-template-columns: 1fr; } }
 
 .sobre{
     position:static;
@@ -437,135 +277,27 @@ h2{
     align-items: center;
     text-align: center;
     z-index: 2;
-
 }
 
-.sobre-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to right, #000 40%, rgba(0,0,0,0.85));
-}
+.sobre-overlay{ position:absolute; inset:0; background:linear-gradient(to right, #000 40%, rgba(0,0,0,0.85)); }
+.sobre-container{ position:relative; z-index:2; max-width:1200px; margin:auto; width:100%; display:flex; flex-direction:column; gap:60px; align-items: center; }
+.sobre-intro{ max-width:700px; }
+.sobre-intro h2{ font-size:48px; margin-bottom:10px; }
+.sobre-intro h4{ font-size:22px; margin-bottom:20px; color:#e10600; }
+.sobre-intro p{ line-height:1.6; font-size:18px; }
 
-.sobre-container{
-    position:relative;
-    z-index:2;
-    max-width:1200px;
-    margin:auto;
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    gap:60px;
-    align-items: center;
-}
+.sobre-cards{ display:flex; gap:40px; justify-content:space-between; }
+.sobre-card{ flex:1; background:rgba(0,0,0,0.6); padding:30px; border-radius:12px; display:flex; flex-direction:column; gap:15px; transition:0.3s; }
+.sobre-card:hover{ transform:translateY(-8px); background:rgba(0,0,0,0.8); }
+.sobre-card h3{ font-size:22px; color:#e10600; }
+.sobre-card p{ font-size:16px; line-height:1.5; }
 
-.sobre-intro{
-    max-width:700px;
-}
+@media(max-width:992px){ .sobre-cards{ flex-direction:column; } }
 
-.sobre-intro h2{
-    font-size:48px;
-    margin-bottom:10px;
-}
+.servicos { padding: 100px 8%; background: #000; text-align: center; }
+.servicos h2 { font-size: 38px; margin-bottom: 60px; color: #fff; }
+.servicos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 
-.sobre-intro h4{
-    font-size:22px;
-    margin-bottom:20px;
-    color:#e10600;
-}
-
-.sobre-intro p{
-    line-height:1.6;
-    font-size:18px;
-}
-
-
-
-
-
-/* CARDS */
-
-.sobre-cards{
-    display:flex;
-    gap:40px;
-    justify-content:space-between;
-}
-
-.sobre-card{
-    flex:1;
-    background:rgba(0,0,0,0.6);
-    padding:30px;
-    border-radius:12px;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    transition:0.3s;
-}
-
-.sobre-card:hover{
-    transform:translateY(-8px);
-    background:rgba(0,0,0,0.8);
-}
-
-.icon{
-    font-size:32px;
-}
-
-.sobre-card h3{
-    font-size:22px;
-    color:#e10600;
-}
-
-.sobre-card p{
-    font-size:16px;
-    line-height:1.5;
-}
-
-/* BOTÃO */
-
-.btn-sobre{
-    background:#e10600;
-    color:#fff;
-    border:none;
-    padding:15px 30px;
-    font-weight:bold;
-    cursor:pointer;
-    border-radius:5px;
-    transition:0.3s;
-    width:max-content;
-}
-
-.btn-sobre:hover{
-    background:#ff1a1a;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:992px){
-    .sobre-cards{
-        flex-direction:column;
-    }
-}
-
-.servicos {
-  padding: 100px 8%;
-  background: #000;
-  text-align: center;
-}
-
-.servicos h2 {
-  font-size: 38px;
-  margin-bottom: 60px;
-  color: #fff;
-}
-
-/* GRID 3 COLUNAS */
-.servicos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-}
-
-/* CARD BASE */
 .servico-card {
   background: #111;
   padding: 35px 30px;
@@ -575,335 +307,70 @@ h2{
   transition: 0.4s ease;
 }
 
-/* TÍTULO VERMELHO */
-.servico-card h3 {
-  color: #ff1a1a;
-  margin-bottom: 15px;
-}
+.servico-card h3 { color: #ff1a1a; margin-bottom: 15px; }
+.servico-card h4 { color: #fff; margin-bottom: 10px; }
+.servico-card p { color: #aaa; font-size: 14px; }
 
-/* PREÇO */
-.servico-card h4 {
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-/* TEXTO */
-.servico-card p {
-  color: #aaa;
-  font-size: 14px;
-}
-
-/* 🔥 NEON VERMELHO IGUAL DOS PLANOS */
 .servico-card:hover {
   border: 1px solid #ff0000;
-  box-shadow:
-    0 0 10px #ff0000,
-    0 0 20px #ff0000,
-    0 0 40px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.6);
   transform: translateY(-8px);
 }
 
-@media (max-width: 992px) {
-  .servicos-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+/* Atualize esta regra no seu CSS */
+.servico-card:hover, .servico-card.selecionado {
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px rgba(255, 0, 0, 0.6);
+  transform: translateY(-8px);
 }
 
-@media (max-width: 600px) {
-  .servicos-grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 992px) { .servicos-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .servicos-grid { grid-template-columns: 1fr; } }
 
-.valores{
-    margin-top:20px;
-    line-height:1.8;
-}
+.pagamento{ background:#000; padding:100px 20px; text-align:center; color:#fff; }
+.pagamento-container{ max-width:1200px; margin:auto; }
+.pagamento h2{ font-size:48px; margin-bottom:20px; font-weight:700; }
+.pagamento-texto{ font-size:22px; max-width:800px; margin:0 auto 80px auto; line-height:1.5; font-weight:500; }
+.pagamento-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:40px; align-items:center; }
+.pagamento-item{ display:flex; flex-direction:column; align-items:center; gap:20px; transition:0.3s; }
+.pagamento-item img{ height:80px; object-fit:contain; }
+.pagamento-item h3{ font-size:26px; font-weight:600; }
+.pagamento-item:hover{ transform:translateY(-8px); }
 
-/* ============================= */
-/* FORMAS DE PAGAMENTO */
-/* ============================= */
+@media(max-width:992px){ .pagamento-grid{ grid-template-columns:repeat(2,1fr); gap:50px; } }
+@media(max-width:576px){ .pagamento h2{ font-size:32px; } .pagamento-texto{ font-size:18px; } .pagamento-grid{ grid-template-columns:1fr; gap:40px; } }
 
-.pagamento{
-    background:#000;
-    padding:100px 20px;
-    text-align:center;
-    color:#fff;
-}
+.lead-section{ background:linear-gradient(to right,#000000,#0d0d0d); padding:100px 10%; display:flex; justify-content:center; }
+.lead-container{ width:100%; max-width:1100px; background:rgba(255,255,255,0.04); backdrop-filter:blur(15px); padding:60px; border-radius:25px; border:1px solid rgba(255,0,0,0.2); }
+.lead-header{ text-align:center; margin-bottom:50px; }
+.lead-header h2{ font-size:2.2rem; margin-bottom:10px; }
+.lead-header p{ opacity:.8; margin-bottom:10px; }
+.highlight{ color:#ff0000; letter-spacing:2px; }
 
-.pagamento-container{
-    max-width:1200px;
-    margin:auto;
-}
+.form-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; }
+.form-group{ position:relative; }
+.form-group input, .form-group select{ width:100%; padding:18px 15px; background:#111; border:1px solid #222; border-radius:12px; color:#fff; outline:none; transition:.3s; font-size:14px; }
+.form-group label{ position:absolute; left:15px; top:18px; color:#777; pointer-events:none; transition:.3s; font-size:14px; }
+.form-group input:focus, .form-group select:focus{ border:1px solid #ff0000; }
+.form-group input:focus + label, .form-group input:not(:placeholder-shown) + label, .form-group select:focus + label, .form-group select:valid + label{ top:-8px; left:10px; background:#000; padding:0 6px; font-size:12px; color:#ff3c00; }
 
-.pagamento h2{
-    font-size:48px;
-    margin-bottom:20px;
-    font-weight:700;
-}
+.btn-lead{ margin-top:40px; width:100%; padding:18px; border:none; border-radius:50px; background:linear-gradient(45deg,#ff0000,#fb5252); color:#fff; font-weight:700; font-size:16px; cursor:pointer; transition:.3s; }
+.btn-lead:hover{ transform:scale(1.03); box-shadow:0 0 25px #ff000066; }
 
-.pagamento-texto{
-    font-size:22px;
-    max-width:800px;
-    margin:0 auto 80px auto;
-    line-height:1.5;
-    font-weight:500;
-}
+@media(max-width:768px){ .lead-container{ padding:35px; } .hero h1{ font-size:2.2rem; } }
 
-.pagamento-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:40px;
-    align-items:center;
-}
+.footer{ background:#0a0a0a; padding:60px 10% 20px; border-top:1px solid #111; }
+.footer-container{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:40px; }
+.footer-col h3{ margin-bottom:15px; color:#ff0000; }
+.footer-col p{ margin-bottom:10px; opacity:.85; font-size:.95rem; }
+.footer-link { display: block; color: #aaa; text-decoration: none; margin-bottom: 20px; transition: 0.3s ease; }
+.footer-link strong { color: #ff0000; }
+.footer-link:hover { color: #fff; transform: translateX(5px); }
 
-.pagamento-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:20px;
-    transition:0.3s;
-}
+.social a{ display:inline-block; margin-right:15px; margin-top:10px; color:#fff; text-decoration:none; transition:.3s; }
+.social a:hover{ color:#ff3c00; }
 
-.pagamento-item img{
-    height:80px;
-    object-fit:contain;
-}
-
-.pagamento-item h3{
-    font-size:26px;
-    font-weight:600;
-}
-
-.pagamento-item:hover{
-    transform:translateY(-8px);
-}
-
-/* RESPONSIVO */
-@media(max-width:992px){
-    .pagamento-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:50px;
-    }
-}
-
-@media(max-width:576px){
-    .pagamento h2{
-        font-size:32px;
-    }
-
-    .pagamento-texto{
-        font-size:18px;
-    }
-
-    .pagamento-grid{
-        grid-template-columns:1fr;
-        gap:40px;
-    }
-}
-
-
-/* LEADS SECTION */
-.lead-section{
-    background:linear-gradient(to right,#000000,#0d0d0d);
-    padding:100px 10%;
-    display:flex;
-    justify-content:center;
-}
-
-.lead-container{
-    width:100%;
-    max-width:1100px;
-    background:rgba(255,255,255,0.04);
-    backdrop-filter:blur(15px);
-    padding:60px;
-    border-radius:25px;
-    border:1px solid rgba(255,0,0,0.2);
-}
-
-.lead-header{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.lead-header h2{
-    font-size:2.2rem;
-    margin-bottom:10px;
-}
-
-.lead-header p{
-    opacity:.8;
-    margin-bottom:10px;
-}
-
-.highlight{
-    color:#ff0000;
-    letter-spacing:2px;
-}
-
-/* GRID */
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-/* INPUT FLOATING */
-.form-group{
-    position:relative;
-}
-
-.form-group input,
-.form-group select{
-    width:100%;
-    padding:18px 15px;
-    background:#111;
-    border:1px solid #222;
-    border-radius:12px;
-    color:#fff;
-    outline:none;
-    transition:.3s;
-    font-size:14px;
-}
-
-.form-group label{
-    position:absolute;
-    left:15px;
-    top:18px;
-    color:#777;
-    pointer-events:none;
-    transition:.3s;
-    font-size:14px;
-}
-
-.form-group input:focus,
-.form-group select:focus{
-    border:1px solid #ff0000;
-}
-
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group select:focus + label,
-.form-group select:valid + label{
-    top:-8px;
-    left:10px;
-    background:#000;
-    padding:0 6px;
-    font-size:12px;
-    color:#ff3c00;
-}
-
-/* BUTTON */
-.btn-lead{
-    margin-top:40px;
-    width:100%;
-    padding:18px;
-    border:none;
-    border-radius:50px;
-    background:linear-gradient(45deg,#ff0000,#fb5252);
-    color:#fff;
-    font-weight:700;
-    font-size:16px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.btn-lead:hover{
-    transform:scale(1.03);
-    box-shadow:0 0 25px #ff000066;
-}
-
-/* RESPONSIVO */
-@media(max-width:768px){
-    .lead-container{
-        padding:35px;
-    }
-}
-
-
-
-
-/* FOOTER */
-.footer{
-    background:#0a0a0a;
-    padding:60px 10% 20px;
-    border-top:1px solid #111;
-}
-
-.footer-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:40px;
-}
-
-.footer-col h3{
-    margin-bottom:15px;
-    color:#ff0000;
-}
-
-.footer-col p{
-    margin-bottom:10px;
-    opacity:.85;
-    font-size:.95rem;
-}
-
-.footer-link {
-    display: block;
-    color: #aaa;
-    text-decoration: none;
-    margin-bottom: 20px;
-    transition: 0.3s ease;
-}
-
-.footer-link strong {
-    color: #ff0000;
-}
-
-.footer-link:hover {
-    color: #fff;
-    transform: translateX(5px);
-}
-
-
-.social a{
-    display:inline-block;
-    margin-right:15px;
-    margin-top:10px;
-    color:#fff;
-    text-decoration:none;
-    transition:.3s;
-}
-
-.social a:hover{
-    color:#ff3c00;
-}
-
-.footer-bottom{
-    text-align:center;
-    margin-top:40px;
-    padding-top:20px;
-    border-top:1px solid #111;
-    opacity:.6;
-    font-size:.85rem;
-}
-
-
-
-/* FOOTER */
-footer{
-    background:#000;
-    text-align:center;
-    padding:20px;
-    opacity:.6;
-    font-size:.9rem;
-}
-
-/* RESPONSIVO */
-@media(max-width:768px){
-    .hero h1{
-        font-size:2.2rem;
-    }
-}
+.footer-bottom{ text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid #111; opacity:.6; font-size:.85rem; }
 </style>
 </head>
 
@@ -929,13 +396,12 @@ footer{
     </header>
 
 <section class="hero">
-    
     <video autoplay muted loop playsinline>
         <source src="0222.mp4" type="video/mp4">
         Seu navegador não suporta vídeo.
     </video>
 
-    <div class="hero-content">
+    <div class="hero-content reveal">
         <h1 style="margin-bottom: 1rem;">Conquiste o corpo que você sempre sonhou!</h1>
         <p style="margin-bottom: 1rem;">
             Nossa academia conta com estrutura completa: aparelhos novos, equipe de instrutores e loja exclusiva. 
@@ -945,19 +411,14 @@ footer{
             Escolha seu Plano
         </button>
     </div>
-
 </section>
 
 <section class="sobre" id="sobre">
-
     <div class="sobre-overlay"></div>
-
     <div class="sobre-container">
-
-        <div class="sobre-intro">
+        <div class="sobre-intro reveal fade-left">
             <h2>SOBRE NÓS</h2>
             <h4>Uma Academia feita por você!</h4>
-
             <p>
                 A Dragons Gym possui uma equipe diferenciada, focada no bem estar, na saúde e qualidade de vida dos nossos clientes.
                 Procuramos fortalecer tudo que está em falta hoje no mercado, com máquinas qualificadas,
@@ -966,230 +427,140 @@ footer{
         </div>
 
         <div class="sobre-cards">
-
-            <div class="sobre-card">
+            <div class="sobre-card reveal delay-1">
                 <i class="fa-solid fa-bullseye" style='font-size:48px;color:red'></i>
                 <h3>Missão</h3>
-                <p>
-                    Ser a empresa que melhor entende e satisfaz as necessidades de bem estar e saúde dos nossos clientes,
-                    de forma inovadora e efetiva.
-                </p>
+                <p>Ser a empresa que melhor entende e satisfaz as necessidades de bem estar e saúde dos nossos clientes, de forma inovadora e efetiva.</p>
             </div>
-
-            <div class="sobre-card">
+            <div class="sobre-card reveal delay-2">
                 <i class="fa-solid fa-eye" style='font-size:48px;color:red'></i>
                 <h3>Visão</h3>
-                <p>
-                    Ser referência em treinamento de musculação,
-                    reconhecida pela qualidade dos serviços e comprometimento com resultados.
-                </p>
+                <p>Ser referência em treinamento de musculação, reconhecida pela qualidade dos serviços e comprometimento com resultados.</p>
             </div>
-
-            <div class="sobre-card">
+            <div class="sobre-card reveal delay-3">
                 <i class="fa-solid fa-gem" style='font-size:48px;color:red'></i>
                 <h3>Valores</h3>
-                <p>
-                    Integridade • Comprometimento • Valorização humana • Superação • Inovação • Sustentabilidade
-                </p>
+                <p>Integridade • Comprometimento • Valorização humana • Superação • Inovação • Sustentabilidade</p>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- MODALIDADES -->
 <section class="modalidades">
     <div class="modalidades-wrapper">
-
-        <div class="card-musculacao">
+        <div class="card-musculacao reveal fade-left">
             <h2>MUSCULAÇÃO</h2>
-            <p>
-              Temos mais de 150 máquinas e equipamentos para atender desde crianças até idosos com total
-              segurança e profissionais altamente capacitados, para te ajudar a alcançar suas metas pessoais
-              de condicionamento físico.
-            </p>
-          
-            <p>
-              São <strong>DUAS unidades</strong> pelo preço de uma: Aqui você possui dois locais com
-              equipamentos distintos para melhor escolher o que deseja treinar.
-            </p>
+            <p>Temos mais de 150 máquinas e equipamentos para atender desde crianças até idosos com total segurança e profissionais altamente capacitados, para te ajudar a alcançar suas metas pessoais de condicionamento físico.</p>
+            <p>São <strong>DUAS unidades</strong> pelo preço de uma: Aqui você possui dois locais com equipamentos distintos para melhor escolher o que deseja treinar.</p>
         </div>
-          
-
-        <div class="modalidades-img">
+        <div class="modalidades-img reveal fade-right delay-1">
             <img src="Imagem-Academia.jpg" alt="Musculação Dragons Gym">
         </div>
-
     </div>
 </section>
 
 <section class="planos" id="planos">
-    <h2 class="section-title">ESCOLHA SEU PLANO DE MUSCULAÇÃO</h2>
+    <h2 class="section-title reveal">ESCOLHA SEU PLANO DE MUSCULAÇÃO</h2>
   
     <div class="planos-grid">
-      <!-- Card -->
-      <div class="card active">
+      <div class="card selecionado reveal delay-1">
         <h3>Mensal</h3>
         <h4>R$135,00</h4>
         <p>30 dias de acesso completo.</p>
       </div>
-
-        
-      <div class="card">
+      <div class="card reveal delay-2">
         <h3>Mensal Recorrente</h3>
         <h4>R$130,00</h4>
         <p>Pagamento somente recorrente.</p>
       </div>
-
-      <div class="card">
+      <div class="card reveal delay-3">
         <h3>Semestral Estudante</h3>
         <h4>R$109,00</h4>
         <p>Pagamento recorrente mensal.</p>
       </div>
-  
-      <div class="card">
+      <div class="card reveal delay-4">
         <h3>Trimestral</h3>
         <h4>R$360,00</h4>
         <p>3 meses. Até 3x no cartão ou recorrente.</p>
       </div>
-  
-      <div class="card">
+      <div class="card reveal delay-5">
         <h3>Semestral</h3>
         <h4>R$690,00</h4>
         <p>6 meses. Até 6x no cartão ou recorrente.</p>
       </div>
-  
-      <div class="card">
+      <div class="card reveal delay-6">
         <h3>Anual</h3>
         <h4>R$1.308,00</h4>
         <p>12 meses. Até 12x no cartão ou recorrente.</p>
       </div>
-  
- 
-
     </div>
-  </section>
-  
+</section>
 
-  <section class="servicos">
-    <h2>SERVIÇOS</h2>
-  
+<section class="servicos">
+    <h2 class="reveal">SERVIÇOS</h2>
     <div class="servicos-grid">
-      <div class="servico-card">
+      <div class="servico-card selecionado reveal delay-1">
         <h3>Avaliação Física</h3>
         <h4>R$80,00</h4>
         <p>Composição corporal, postural e mobilidade.</p>
       </div>
-  
-      <div class="servico-card">
+      <div class="servico-card reveal delay-2">
         <h3>Semestral + Nutri</h3>
         <h4>R$990,00</h4>
         <p>Nutricionista incluso no plano semestral.</p>
       </div>
-  
-      <div class="servico-card">
+      <div class="servico-card reveal delay-3">
         <h3>Anual + Nutri</h3>
         <h4>R$1.608,00</h4>
         <p>Nutricionista incluso no plano anual.</p>
       </div>
     </div>
-  </section>
-  
-
-
+</section>
 
 <section class="pagamento">
-
     <div class="pagamento-container">
-
-        <h2>Formas de Pagamento</h2>
-
-        <p class="pagamento-texto">
+        <h2 class="reveal">Formas de Pagamento</h2>
+        <p class="pagamento-texto reveal delay-1">
             Aqui na Dragons Gym aceitamos diversas formas de pagamento e o melhor:
             Parcelamos em até 12x sem juros.
         </p>
-
         <div class="pagamento-grid">
-
-            <div class="pagamento-item">
+            <div class="pagamento-item reveal delay-2">
                 <img src="dinheiro.png" alt="Dinheiro">
                 <h3>Dinheiro</h3>
             </div>
-
-            <div class="pagamento-item">
+            <div class="pagamento-item reveal delay-3">
                 <i class='fas fa-credit-card' style='font-size:48px;color:red'></i>
                 <h3>Cartão</h3>
             </div>
-
-            <div class="pagamento-item">
+            <div class="pagamento-item reveal delay-4">
                 <img src="transferncia.png" alt="Transferência">
                 <h3>Transferência</h3>
             </div>
-
-            <div class="pagamento-item">
+            <div class="pagamento-item reveal delay-5">
                 <img src="pix.png" alt="PIX" style="width: 10rem;">
                 <h3>PIX</h3>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
-
-<!-- LEADS - CADASTRO -->
 <section class="lead-section">
-    <div class="lead-container">
-
+    <div class="lead-container reveal">
         <div class="lead-header">
             <h2>Cadastro no Sistema Dragons Gym</h2>
             <p>Venha fazer parte do melhor centro de treinamento da região!</p>
             <h3 class="highlight">Seja DRAGONS GYM</h3>
         </div>
-
         <form class="lead-form">
-
             <div class="form-grid">
-
-                <div class="form-group">
-                    <input type="text" required>
-                    <label>Nome Completo</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" required>
-                    <label>CPF</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="email" required>
-                    <label>E-mail</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="tel" required>
-                    <label>Telefone</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" required>
-                    <label>Endereço</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" required>
-                    <label>Cidade</label>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" required>
-                    <label>CEP</label>
-                </div>
-
+                <div class="form-group"><input type="text" required><label>Nome Completo</label></div>
+                <div class="form-group"><input type="text" required><label>CPF</label></div>
+                <div class="form-group"><input type="email" required><label>E-mail</label></div>
+                <div class="form-group"><input type="tel" required><label>Telefone</label></div>
+                <div class="form-group"><input type="text" required><label>Endereço</label></div>
+                <div class="form-group"><input type="text" required><label>Cidade</label></div>
+                <div class="form-group"><input type="text" required><label>CEP</label></div>
                 <div class="form-group">
                     <select required>
                         <option value="" disabled selected></option>
@@ -1197,64 +568,30 @@ footer{
                     </select>
                     <label>Interesse</label>
                 </div>
-
             </div>
-
-            <button type="submit" class="btn-lead">
-                Quero Fazer Parte
-            </button>
-
+            <button type="submit" class="btn-lead">Quero Fazer Parte</button>
         </form>
-
     </div>
 </section>
 
-
-<!-- FOOTER COMPLETO -->
 <footer class="footer" id="contato">
-    <div class="footer-container">
-
-        <!-- HORÁRIOS -->
+    <div class="footer-container reveal">
         <div class="footer-col">
             <h3>Horários de Funcionamento</h3>
             <p><strong>Seg – Sex:</strong> 05:00 – 23:00</p>
             <p><strong>Sáb/Feriados:</strong> 07:00 – 18:00</p>
             <p><strong>Domingos:</strong> 08:00 – 14:00</p>
         </div>
-
-<!-- ENDEREÇOS -->
-<div class="footer-col">
-    <h3>Endereços</h3>
-
-    <a href="https://www.google.com/maps/search/244,+Rua+Feliciano+Telles,+Santa+Rita+do+Sapuca%C3%AD,+Brasil/"
-       target="_blank" class="footer-link">
-        <strong>Unid I</strong><br>
-        Rua Feliciano Telles, 244<br>
-        Bairro Inatel – Santa Rita do Sapucaí
-    </a>
-
-    <a href="https://www.google.com/maps/place/R.+Prof.+Francisco+do+Nascimento,+490+-+Oz%C3%B3rio+Machado,+Santa+Rita+do+Sapuca%C3%AD+-+MG/"
-       target="_blank" class="footer-link">
-        <strong>Unid II</strong><br>
-        Rua Prof. Francisco do Nascimento, 490<br>
-        Fernandes – Santa Rita do Sapucaí
-    </a>
-
-    <a href="https://www.google.com/maps/place/Academia+Dragons+Gym+Unid+III+Pouso+Alegre/"
-       target="_blank" class="footer-link">
-        <strong>Unid III</strong><br>
-        Av. Prefeito Tuany Toledo, 426<br>
-        Fátima I – Pouso Alegre
-    </a>
-</div>
-
-
-        <!-- CONTATO -->
+        <div class="footer-col">
+            <h3>Endereços</h3>
+            <a href="https://www.google.com/maps/search/244,+Rua+Feliciano+Telles,+Santa+Rita+do+Sapuca%C3%AD,+Brasil/" target="_blank" class="footer-link"><strong>Unid I</strong><br>Rua Feliciano Telles, 244<br>Bairro Inatel – Santa Rita do Sapucaí</a>
+            <a href="https://www.google.com/maps/place/R.+Prof.+Francisco+do+Nascimento,+490+-+Oz%C3%B3rio+Machado,+Santa+Rita+do+Sapuca%C3%AD+-+MG/" target="_blank" class="footer-link"><strong>Unid II</strong><br>Rua Prof. Francisco do Nascimento, 490<br>Fernandes – Santa Rita do Sapucaí</a>
+            <a href="https://www.google.com/maps/place/Academia+Dragons+Gym+Unid+III+Pouso+Alegre/" target="_blank" class="footer-link"><strong>Unid III</strong><br>Av. Prefeito Tuany Toledo, 426<br>Fátima I – Pouso Alegre</a>
+        </div>
         <div class="footer-col">
             <h3>Contato</h3>
             <p>📞 (35) 9 9857 7826 – Santa Rita do Sapucaí</p>
             <p>📞 (35) 9 9909 3721 – Pouso Alegre</p>
-
             <h3 style="margin-top:20px;">Redes Sociais</h3>
             <div class="social">
                 <a href="#"><i class="fa-brands fa-instagram" style="font-size: 2.3rem;"></i></a>
@@ -1263,31 +600,22 @@ footer{
                 <a href="mailto:contato@dragonsgym.com" style="font-size: 2.3rem;"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
-
     </div>
-
     <div class="footer-bottom">
         © 2026 Dragons Gym - Todos os direitos reservados.
     </div>
 </footer>
 
-<!-- WHATSAPP PROFISSIONAL -->
-<a href="https://wa.me/5535998577826?text=Olá,%20quero%20saber%20mais%20sobre%20os%20planos%20da%20Dragons%20Gym"
-   target="_blank"
-   class="whatsapp-float"
-   aria-label="Fale conosco no WhatsApp">
-
+<a href="https://wa.me/5535998577826?text=Olá,%20quero%20saber%20mais%20sobre%20os%20planos%20da%20Dragons%20Gym" target="_blank" class="whatsapp-float" aria-label="Fale conosco no WhatsApp">
     <svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor">
         <path d="M19.11 17.39c-.29-.14-1.71-.84-1.97-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.14-1.23-.45-2.35-1.43-.87-.77-1.46-1.72-1.63-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.51.07-.78.36-.26.29-1 1-.99 2.44 0 1.44 1.02 2.83 1.16 3.02.14.19 2 3.05 4.85 4.28.68.29 1.21.46 1.63.59.69.22 1.32.19 1.82.12.56-.08 1.71-.7 1.95-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.34z"/>
         <path d="M16 .4C7.38.4.4 7.38.4 16c0 2.82.74 5.46 2.04 7.75L.4 31.6l8.06-2.1A15.52 15.52 0 0016 31.6c8.62 0 15.6-6.98 15.6-15.6S24.62.4 16 .4zm0 28.3c-2.47 0-4.78-.67-6.77-1.83l-.49-.29-4.79 1.25 1.28-4.66-.32-.48A12.8 12.8 0 013.2 16c0-7.06 5.74-12.8 12.8-12.8S28.8 8.94 28.8 16 23.06 28.7 16 28.7z"/>
     </svg>
-
-  
 </a>
 
 <script>
-// Lógica do Menu Burger (já existente)
-const burger = document.getElementById('burger');
+    // 1. Lógica do Menu Burger
+    const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
 
     burger.addEventListener('click', () => {
@@ -1295,20 +623,53 @@ const burger = document.getElementById('burger');
         burger.classList.toggle('toggle');
     });
 
-    // --- NOVA LÓGICA DOS CARDS ---
-    
-    // 1. Seleciona todos os cards dentro da grid de planos
-    const cards = document.querySelectorAll('.planos-grid .card');
-
+// 2. Lógica dos Cards (Neon)
+const cards = document.querySelectorAll('.planos-grid .card');
     cards.forEach(card => {
         card.addEventListener('click', () => {
-            // 2. Remove a classe 'active' de TODOS os cards primeiro
-            cards.forEach(c => c.classList.remove('active'));
-            
-            // 3. Adiciona a classe 'active' SÓ no card que foi clicado
-            card.classList.add('active');
+            // Remove o selecionado de todos
+            cards.forEach(c => c.classList.remove('selecionado'));
+            // Adiciona o selecionado apenas no clicado
+            card.classList.add('selecionado');
         });
     });
+
+    // 3. LÓGICA DO SCROLL REVEAL (Intersection Observer)
+    // Opções: dispara a animação quando 15% do elemento estiver visível na tela
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Adiciona a classe active que faz o elemento aparecer
+                entry.target.classList.add('active');
+                // Deixa de observar o elemento após a animação rodar uma vez
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Seleciona todos os elementos que possuem a classe .reveal
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => observer.observe(el));
+
+
+// --- Lógica dos Cards de SERVIÇOS (Neon) ---
+const servicoCards = document.querySelectorAll('.servicos-grid .servico-card');
+    
+    servicoCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Remove o 'selecionado' de todos os serviços
+            servicoCards.forEach(c => c.classList.remove('selecionado'));
+            // Adiciona o 'selecionado' apenas no serviço clicado
+            card.classList.add('selecionado');
+        });
+    });
+
 </script>
 
 </body>
