@@ -6,6 +6,11 @@
 <title>Dragons Gym</title>
 <link rel="icon" href="https://dragonsgym.com.br/wp-content/uploads/2022/09/cropped-dragons-gym-ico-32x32.png" sizes="32x32">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 <style>
 *{
@@ -180,6 +185,7 @@ h2{
     justify-content:center;
     text-align:center;
     overflow:hidden;
+    z-index: 2;
 }
 
 /* VIDEO BACKGROUND */
@@ -229,27 +235,52 @@ h2{
 }
 
 /* CARD ESQUERDO */
-.modalidades-card{
-    background:#e9e9e9;
-    color:#111;
-    padding:60px;
-    border-radius:12px;
-    position:relative;
-    z-index:2;
-    box-shadow:0 0 0 2px #ff0000;
+.card-musculacao {
+  
+    max-width: 461px;
+    height: 37rem;
+    padding: 40px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.4);
+    transition: 0.4s ease;
+    margin-left: 30rem;
+    z-index: 1;
 }
 
-.modalidades-card h2{
-    color:#ff0000;
-    font-size:2rem;
-    margin-bottom:25px;
+/* Efeito ativo mais forte ao passar o mouse */
+.card-musculacao:hover {
+  box-shadow:
+    0 0 15px #ff0000,
+    0 0 30px #ff0000,
+    0 0 60px rgba(255, 0, 0, 0.8);
+
+  transform: scale(1.02);
 }
 
-.modalidades-card p{
-    line-height:1.7;
-    margin-bottom:20px;
-    font-size:15px;
+/* Título */
+.card-musculacao h2 {
+  color: #ffffff;
+  font-size: 30px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
 }
+
+/* Parágrafos */
+.card-musculacao p {
+  color: #e6e6e6;
+  line-height: 1.6;
+  font-size: 1.3rem;
+}
+
+/* Destaque */
+.card-musculacao strong {
+  color: #ffffff;
+}
+
 
 /* IMAGEM DIREITA */
 .modalidades-img{
@@ -258,7 +289,7 @@ h2{
 }
 
 .modalidades-img img{
-    width:100%;
+    width:70%;
     border-radius:12px;
     display:block;
 }
@@ -277,6 +308,35 @@ h2{
     .modalidades-card{
         padding:40px;
     }
+
+    .card-musculacao {
+  
+  max-width: 461px;
+  height: 33rem;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.4);
+  transition: 0.4s ease;
+  margin-left: 0rem;
+  z-index: 1;
+}
+
+.card-musculacao p {
+  color: #e6e6e6;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.modalidades-img img{
+    width:100%;
+    border-radius:12px;
+    display:block;
+}
+
 }
 
 
@@ -339,6 +399,15 @@ h2{
   transform: translateY(-8px);
 }
 
+.card.active {
+  border: 1px solid #ff0000;
+  box-shadow: 
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px rgba(255, 0, 0, 0.6);
+  transform: translateY(-8px);
+}
+
 @media (max-width: 992px) {
   .planos-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -356,7 +425,7 @@ h2{
 /* ============================= */
 
 .sobre{
-    position:relative;
+    position:static;
     min-height:100vh;
     background-image: url("bg_dragonsgym_sobre.jpg");
     background-size: cover;
@@ -365,7 +434,10 @@ h2{
     padding:120px 20px;
     color:#fff;
     display:flex;
-    align-items:center;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+
 }
 
 .sobre-overlay{
@@ -383,6 +455,7 @@ h2{
     display:flex;
     flex-direction:column;
     gap:60px;
+    align-items: center;
 }
 
 .sobre-intro{
@@ -774,6 +847,24 @@ h2{
     font-size:.95rem;
 }
 
+.footer-link {
+    display: block;
+    color: #aaa;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+}
+
+.footer-link strong {
+    color: #ff0000;
+}
+
+.footer-link:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+
 .social a{
     display:inline-block;
     margin-right:15px;
@@ -845,8 +936,8 @@ footer{
     </video>
 
     <div class="hero-content">
-        <h1>Conquiste o corpo que você sempre sonhou!</h1>
-        <p>
+        <h1 style="margin-bottom: 1rem;">Conquiste o corpo que você sempre sonhou!</h1>
+        <p style="margin-bottom: 1rem;">
             Nossa academia conta com estrutura completa: aparelhos novos, equipe de instrutores e loja exclusiva. 
             Tudo para ajudar no desenvolvimento do seu corpo.
         </p>
@@ -877,7 +968,7 @@ footer{
         <div class="sobre-cards">
 
             <div class="sobre-card">
-                <div class="icon">🎯</div>
+                <i class="fa-solid fa-bullseye" style='font-size:48px;color:red'></i>
                 <h3>Missão</h3>
                 <p>
                     Ser a empresa que melhor entende e satisfaz as necessidades de bem estar e saúde dos nossos clientes,
@@ -886,7 +977,7 @@ footer{
             </div>
 
             <div class="sobre-card">
-                <div class="icon">👁️</div>
+                <i class="fa-solid fa-eye" style='font-size:48px;color:red'></i>
                 <h3>Visão</h3>
                 <p>
                     Ser referência em treinamento de musculação,
@@ -895,7 +986,7 @@ footer{
             </div>
 
             <div class="sobre-card">
-                <div class="icon">🔥</div>
+                <i class="fa-solid fa-gem" style='font-size:48px;color:red'></i>
                 <h3>Valores</h3>
                 <p>
                     Integridade • Comprometimento • Valorização humana • Superação • Inovação • Sustentabilidade
@@ -913,17 +1004,20 @@ footer{
 <section class="modalidades">
     <div class="modalidades-wrapper">
 
-        <div class="modalidades-card">
-            <h2>Musculação</h2>
-
+        <div class="card-musculacao">
+            <h2>MUSCULAÇÃO</h2>
             <p>
-                Temos mais de 150 máquinas e equipamentos para atender desde crianças até idosos com total segurança e profissionais altamente capacitados, para te ajudar a alcançar suas metas pessoais de condicionamento físico.
+              Temos mais de 150 máquinas e equipamentos para atender desde crianças até idosos com total
+              segurança e profissionais altamente capacitados, para te ajudar a alcançar suas metas pessoais
+              de condicionamento físico.
             </p>
-
+          
             <p>
-                São <strong>DUAS unidades</strong> pelo preço de uma: Aqui você possui dois locais com equipamentos distintos para melhor escolher o que deseja treinar.
+              São <strong>DUAS unidades</strong> pelo preço de uma: Aqui você possui dois locais com
+              equipamentos distintos para melhor escolher o que deseja treinar.
             </p>
         </div>
+          
 
         <div class="modalidades-img">
             <img src="Imagem-Academia.jpg" alt="Musculação Dragons Gym">
@@ -932,12 +1026,12 @@ footer{
     </div>
 </section>
 
-<section class="planos">
+<section class="planos" id="planos">
     <h2 class="section-title">ESCOLHA SEU PLANO DE MUSCULAÇÃO</h2>
   
     <div class="planos-grid">
       <!-- Card -->
-      <div class="card">
+      <div class="card active">
         <h3>Mensal</h3>
         <h4>R$135,00</h4>
         <p>30 dias de acesso completo.</p>
@@ -1014,7 +1108,7 @@ footer{
         <h2>Formas de Pagamento</h2>
 
         <p class="pagamento-texto">
-            Aqui na Dragons Gym aceitamos diversas formas de pagamento e o melhor:<br>
+            Aqui na Dragons Gym aceitamos diversas formas de pagamento e o melhor:
             Parcelamos em até 12x sem juros.
         </p>
 
@@ -1026,7 +1120,7 @@ footer{
             </div>
 
             <div class="pagamento-item">
-                <img src="cartao.png" alt="Cartão">
+                <i class='fas fa-credit-card' style='font-size:48px;color:red'></i>
                 <h3>Cartão</h3>
             </div>
 
@@ -1036,7 +1130,7 @@ footer{
             </div>
 
             <div class="pagamento-item">
-                <img src="pix.png" alt="PIX">
+                <img src="pix.png" alt="PIX" style="width: 10rem;">
                 <h3>PIX</h3>
             </div>
 
@@ -1117,7 +1211,7 @@ footer{
 
 
 <!-- FOOTER COMPLETO -->
-<footer class="footer">
+<footer class="footer" id="contato">
     <div class="footer-container">
 
         <!-- HORÁRIOS -->
@@ -1128,21 +1222,32 @@ footer{
             <p><strong>Domingos:</strong> 08:00 – 14:00</p>
         </div>
 
-        <!-- ENDEREÇOS -->
-        <div class="footer-col">
-            <h3>Endereços</h3>
-            <p><strong>Unid I</strong><br>
-            Rua Feliciano Telles, 244<br>
-            Bairro Inatel – Santa Rita do Sapucaí</p>
+<!-- ENDEREÇOS -->
+<div class="footer-col">
+    <h3>Endereços</h3>
 
-            <p><strong>Unid II</strong><br>
-            Rua Prof. Francisco do Nascimento, 490<br>
-            Fernandes – Santa Rita do Sapucaí</p>
+    <a href="https://www.google.com/maps/search/244,+Rua+Feliciano+Telles,+Santa+Rita+do+Sapuca%C3%AD,+Brasil/"
+       target="_blank" class="footer-link">
+        <strong>Unid I</strong><br>
+        Rua Feliciano Telles, 244<br>
+        Bairro Inatel – Santa Rita do Sapucaí
+    </a>
 
-            <p><strong>Unid III</strong><br>
-            Av. Prefeito Tuany Toledo, 426<br>
-            Fátima I – Pouso Alegre</p>
-        </div>
+    <a href="https://www.google.com/maps/place/R.+Prof.+Francisco+do+Nascimento,+490+-+Oz%C3%B3rio+Machado,+Santa+Rita+do+Sapuca%C3%AD+-+MG/"
+       target="_blank" class="footer-link">
+        <strong>Unid II</strong><br>
+        Rua Prof. Francisco do Nascimento, 490<br>
+        Fernandes – Santa Rita do Sapucaí
+    </a>
+
+    <a href="https://www.google.com/maps/place/Academia+Dragons+Gym+Unid+III+Pouso+Alegre/"
+       target="_blank" class="footer-link">
+        <strong>Unid III</strong><br>
+        Av. Prefeito Tuany Toledo, 426<br>
+        Fátima I – Pouso Alegre
+    </a>
+</div>
+
 
         <!-- CONTATO -->
         <div class="footer-col">
@@ -1152,10 +1257,10 @@ footer{
 
             <h3 style="margin-top:20px;">Redes Sociais</h3>
             <div class="social">
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-                <a href="#">Waze</a>
-                <a href="mailto:contato@dragonsgym.com">Envelope</a>
+                <a href="#"><i class="fa-brands fa-instagram" style="font-size: 2.3rem;"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f" style="font-size: 2.3rem;"></i></a>
+                <a href="#"><i class="fa-brands fa-waze" style="font-size: 2.3rem;"></i></a>
+                <a href="mailto:contato@dragonsgym.com" style="font-size: 2.3rem;"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
 
@@ -1181,12 +1286,28 @@ footer{
 </a>
 
 <script>
-    const burger = document.getElementById('burger');
+// Lógica do Menu Burger (já existente)
+const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
 
     burger.addEventListener('click', () => {
         nav.classList.toggle('active');
         burger.classList.toggle('toggle');
+    });
+
+    // --- NOVA LÓGICA DOS CARDS ---
+    
+    // 1. Seleciona todos os cards dentro da grid de planos
+    const cards = document.querySelectorAll('.planos-grid .card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            // 2. Remove a classe 'active' de TODOS os cards primeiro
+            cards.forEach(c => c.classList.remove('active'));
+            
+            // 3. Adiciona a classe 'active' SÓ no card que foi clicado
+            card.classList.add('active');
+        });
     });
 </script>
 
